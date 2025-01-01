@@ -6,7 +6,7 @@ interface AvatarProps {
 }
 const Avatar: React.FC<AvatarProps> = ({ src }) => {
   if (src) {
-    return <Image src={src} alt="Avatar" width="30" height="30" />;
+    return <Image src={src} alt="Avatar" width="30" height="30" className="rounded-full"/>;
   }
   return <FaUserCircle size={24}/>;
 };

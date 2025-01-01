@@ -22,7 +22,6 @@ type CartContextType = {
 export const CartContext = createContext<CartContextType | null>(null);
 
 interface Props {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [propsName: string]: any;
 }
 
@@ -34,7 +33,6 @@ export const CartContextProvider = (props: Props) => {
   );
 
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const cartItems: any = localStorage.getItem("eShopItems");
     const cProducts: CartProductType[] | null = JSON.parse(cartItems);
     setCartProducts(cProducts);
