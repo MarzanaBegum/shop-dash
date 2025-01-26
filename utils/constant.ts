@@ -14,6 +14,11 @@ export type SelectedImgType = {
   colorCode: string;
   image: string;
 };
+export type UploadedImgType = {
+  color: string;
+  colorCode: string;
+  image: File;
+};
 
 export type UserType = {
   id: string;
@@ -32,7 +37,7 @@ export type ReviewsType = {
   productId: string;
   rating: number;
   comment: string;
-  createdDate: string;
+  createdAt: string;
   user: UserType;
 };
 

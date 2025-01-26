@@ -9,7 +9,7 @@ import Footer from "@/components/footer/Footer";
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "700"] });
 
 export const metadata: Metadata = {
-  title: "Shop Dash",
+  title: "Shop~Dash",
   description: "E-commerce website",
 };
 

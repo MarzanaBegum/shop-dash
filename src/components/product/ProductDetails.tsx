@@ -1,13 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import Rating from "./Rating";
-import {
-  CartProductType,
-  productType,
-  ReviewsType,
-  SelectedImgType,
-} from "../../../utils/constant";
+import { CartProductType, SelectedImgType } from "../../../utils/constant";
 import SetColor from "./SetColor";
 import SetQuantity from "./SetQuantity";
 import Button from "../Button";
@@ -15,16 +9,20 @@ import ProductImage from "./ProductImage";
 import { useCart } from "../../../hooks/useCart";
 import { MdCheckCircle } from "react-icons/md";
 import { useRouter } from "next/navigation";
+import { Rating } from "@mui/material";
+import { Product, Review } from "@prisma/client";
 
 interface ProductDetailProps {
-  product?: productType;
+  product: Product & {
+    reviews: Review[];
+  };
 }
 
 const Horizontal = () => {
   return <hr className="w-[40%] my-2" />;
 };
 
-const ProductDetail: React.FC<ProductDetailProps> = ({
+const ProductDetails: React.FC<ProductDetailProps> = ({
   product = {
     id: "",
     name: "",
@@ -53,7 +51,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({
 
   const productRating =
     product.reviews.reduce(
-      (acc: number, item: ReviewsType) => item.rating + acc,
+      (acc: number, item: Review) => item.rating + acc,
       0
     ) / product.reviews.length;
 
@@ -109,7 +107,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({
       <div className="flex flex-col gap-1 text-slate-500 text-sm">
         <h2 className="text-3xl text-slate-700 font-medium">{product.name}</h2>
         <div className="flex gap-2 items-center">
-          <Rating totalStars={5} initialRating={productRating} />
+          <Rating value={productRating} readOnly />
           <div>{product.reviews.length} reviews</div>
         </div>
         <Horizontal />
@@ -170,4 +168,4 @@ const ProductDetail: React.FC<ProductDetailProps> = ({
   );
 };
 
-export default ProductDetail;
+export default ProductDetails;

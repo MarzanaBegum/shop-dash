@@ -1,15 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import {
-  CartProductType,
-  productType,
-  SelectedImgType,
-} from "../../../utils/constant";
+import { CartProductType, SelectedImgType } from "../../../utils/constant";
+import { Product } from "@prisma/client";
 
 interface ProductImgProps {
   cartProduct: CartProductType;
-  product: productType;
+  product: Product;
   handleColorSelect: (value: SelectedImgType) => void;
 }
 const ProductImage: React.FC<ProductImgProps> = ({

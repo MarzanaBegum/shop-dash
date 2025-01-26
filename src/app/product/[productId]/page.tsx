@@ -1,19 +1,28 @@
 import Container from "@/components/Container";
-import ProductDetail from "@/components/product/ProductDetail";
 import ListRating from "@/components/product/ListRating";
-import { products } from "../../../../utils/products";
+import ProductDetails from "@/components/product/ProductDetails";
+import getProductById from "../../../../actions/getProductById";
+import NullData from "@/components/NullData";
+import AddRating from "@/components/product/AddRating";
+import { getCurrentUser } from "../../../../actions/getCurrentUser";
+export const dynamic = "force-dynamic";
 
-interface IPrams {
-  productId: string;
+interface IParams {
+  productId?: string;
 }
-const page = ({ params }: { params: IPrams }) => {
-  const product = products.find((item) => item.id === params.productId);
+const page = async ({ params }: { params: IParams }) => {
+  const product = await getProductById(params);
+  const user = await getCurrentUser();
+
+  if (!product)
+    return <NullData title="Oops! Product with the given id does not exit" />;
+
   return (
     <div className="p-8">
       <Container>
-        <ProductDetail product={product} />
+        <ProductDetails product={product} />
         <div className="mt-20 flex flex-col gap-4">
-          <div>Add Reviews</div>
+          <AddRating product={product} user={user} />
           <ListRating product={product} />
         </div>
       </Container>

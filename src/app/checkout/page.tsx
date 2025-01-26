@@ -1,6 +1,7 @@
 import Container from "@/components/Container";
 import FormWrap from "@/components/FormWrap";
-import CheckoutClient from "./CheckoutClient";
+import CheckoutClient from "../../components/checkOut/CheckoutClient";
+export const dynamic = "force-dynamic";
 
 const Checkout = () => {
   return (

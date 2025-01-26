@@ -3,9 +3,9 @@
 import Image from "next/image";
 import truncateText from "../../../utils/truncate";
 import { formatePrice } from "../../../utils/formate";
-import Rating from "./Rating";
 import { useRouter } from "next/navigation";
 import { productType, ReviewsType } from "../../../utils/constant";
+import { Rating } from "@mui/material";
 
 interface ProductCardProps {
   data: productType;
@@ -36,7 +36,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
         </div>
         <div className="mt-4">{truncateText(data.name)}</div>
         <div>
-          <Rating totalStars={5} initialRating={productRating} />
+          <Rating value={productRating} readOnly />
         </div>
         <div>{data.reviews.length} reviews</div>
         <div className="font-semibold">{formatePrice(data.price)}</div>

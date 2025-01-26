@@ -5,11 +5,13 @@ import Container from "../Container";
 import CartCount from "./CartCount";
 import UserMenu from "./UserMenu";
 import { getCurrentUser } from "../../../actions/getCurrentUser";
+import Categories from "./Categories";
+import SearchBar from "./SearchBar";
 
 const redressed = Redressed({ subsets: ["latin"], weight: ["400"] });
 
-const Navbar = async() => {
-  const currentUser = await getCurrentUser()
+const Navbar = async () => {
+  const currentUser = await getCurrentUser();
 
   return (
     <div className="sticky top-0 z-30 w-full bg-slate-200 shadow-sm">
@@ -22,14 +24,17 @@ const Navbar = async() => {
             >
               Shop Dash
             </Link>
-            <div className="hidden md:block">Search</div>
+            <div className="hidden md:block">
+              <SearchBar />
+            </div>
             <div className="flex gap-8 md:gap-12 items-center">
               <CartCount />
-              <UserMenu currentUser={currentUser}/>
+              <UserMenu currentUser={currentUser} />
             </div>
           </div>
         </Container>
       </div>
+      <Categories />
     </div>
   );
 };

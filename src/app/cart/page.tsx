@@ -1,7 +1,8 @@
 import Container from "@/components/Container";
 import React from "react";
-import CartClient from "./CartClient";
+import CartClient from "../../components/cart/CartClient";
 import { getCurrentUser } from "../../../actions/getCurrentUser";
+export const dynamic = "force-dynamic";
 
 const Cart = async () => {
   const currentUser = await getCurrentUser();
