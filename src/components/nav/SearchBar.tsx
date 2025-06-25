@@ -20,7 +20,6 @@ const SearchBar = () => {
       },
       { skipNull: true }
     );
-    console.log(url);
     router.push(url);
     reset();
   };

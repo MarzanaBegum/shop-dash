@@ -87,7 +87,6 @@ const AddProductForm = () => {
   }, []);
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    console.log(data, "data...");
     setIsLoading(true);
 
     const uploadedImages: UploadedImgType[] = [];
@@ -155,7 +154,6 @@ const AddProductForm = () => {
     };
     await handleUploadImage();
     const productData = { ...data, images: uploadedImages };
-    console.log(productData, "productData..");
 
     axios
       .post("/api/product", productData)

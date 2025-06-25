@@ -4,7 +4,6 @@ import Button from "@/components/Button";
 import Heading from "@/components/Heading";
 import Input from "@/components/inputs/Input";
 import axios from "axios";
-// import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -41,23 +40,23 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ currentUser }) => {
     axios
       .post("/api/register", data)
       .then(() => {
-        toast.success("Account created");
-        router.push("/cart");
-        router.refresh();
-        // signIn("credentials", {
-        //   email: data.eamil,
-        //   password: data.password,
-        //   redirect: false,
-        // }).then((callback) => {
-        //   if (callback?.ok) {
-        //     router.push("/cart");
-        //     router.refresh();
-        //     toast.success("Logged in");
-        //   }
-        //   if (callback?.error) {
-        //     toast.error(callback.error);
-        //   }
-        // });
+        // toast.success("Account created");
+        // router.push("/cart");
+        // router.refresh();
+        const { name: _name, ...signInData } = data;
+        signIn("credentials", {
+          ...signInData,
+          redirect: false,
+        }).then((callback) => {
+          if (callback?.ok) {
+            router.push("/cart");
+            router.refresh();
+            toast.success("Logged in");
+          }
+          if (callback?.error) {
+            toast.error(callback.error);
+          }
+        });
       })
       .catch(() => {
         toast.error("Something went wrong");
