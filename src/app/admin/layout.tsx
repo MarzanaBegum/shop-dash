@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Shop Dash Admin",
-  description: "Admin Dashboard",
+  description: "Admin Dashboard for Shop Dash",
 };
 const AdminLayout = async ({ children }: { children: React.ReactNode }) => {
   const currentUser = await getCurrentUser();
